@@ -10,8 +10,13 @@ Functionality and code quality matter more than pixel perfection.
 - [ ] **Package Management:** Swift Package Manager.
 - [ ] **Architecture:** MVVM or a similarly clean pattern.
 - [X] **Networking:** Handle loading, error, and empty states gracefully.
-- [ ] **Environment:** In your README, specify the **Xcode version**, **iOS version**, and **device/simulator model** you used for testing.
+- [X] **Environment:** In your README, specify the **Xcode version**, **iOS version**, and **device/simulator model** you used for testing.
 - [X] **Repo:** Fork this repo and keep your fork public until review.
+
+## Environment
+- Xcode version: 26.0
+- iOS version: 26.0
+- Device/Simulator model: iPhone Pro 17
 
 ## API
 - **List:**  
