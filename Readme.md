@@ -5,13 +5,13 @@ Load a list of movies, navigate to a details screen, show recommended movies, an
 Functionality and code quality matter more than pixel perfection.
 
 ## Requirements
-- **Language & UI:** Swift 5+, SwiftUI.
-- **Concurrency:** Use Swift Concurrency (`async/await`).
-- **Package Management:** Swift Package Manager.
-- **Architecture:** MVVM or a similarly clean pattern.
-- **Networking:** Handle loading, error, and empty states gracefully.
-- **Environment:** In your README, specify the **Xcode version**, **iOS version**, and **device/simulator model** you used for testing.
-- **Repo:** Fork this repo and keep your fork public until review.
+- [X] **Language & UI:** Swift 5+, SwiftUI.
+- [X] **Concurrency:** Use Swift Concurrency (`async/await`).
+- [ ] **Package Management:** Swift Package Manager.
+- [ ] **Architecture:** MVVM or a similarly clean pattern.
+- [X] **Networking:** Handle loading, error, and empty states gracefully.
+- [ ] **Environment:** In your README, specify the **Xcode version**, **iOS version**, and **device/simulator model** you used for testing.
+- [X] **Repo:** Fork this repo and keep your fork public until review.
 
 ## API
 - **List:**  
