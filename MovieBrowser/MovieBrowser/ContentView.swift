@@ -22,11 +22,19 @@ struct ContentView: View {
     @State private var thumbnail: String = ""
     
     var body: some View {
-        VStack {
-            Text("\(thumbnail)")
-                .task {
-                    await fetchData()
-                }
+        AsyncImage(url: URL(string: thumbnail)) { phase in
+            if let image = phase.image {
+                image
+                    .resizable()
+                    .scaledToFit()
+            } else if phase.error != nil {
+                Text("An error occured loading the image")
+            } else {
+                ProgressView()
+            }
+        }
+        .task {
+            await fetchData()
         }
         .padding()
     }
