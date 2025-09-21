@@ -25,6 +25,10 @@ struct ContentView: View {
                             ProgressView()
                         }
                     }
+                    Text(movie.name)
+                    .task {
+                        await viewModel.fetchDetails(id: movie.id)
+                    }
                 }
             }
             .padding()
