@@ -5,26 +5,15 @@
 //  Created by Ali Syed on 2025-09-20.
 //
 
-struct Response: Decodable {
-    let movies: [Movie]
-}
-
-struct Movie: Identifiable, Decodable {
-    let id: Int
-    let name: String
-    let thumbnail: String
-    let year: Int
-}
-
 import SwiftUI
 
 struct ContentView: View {
-    @State private var movies: [Movie] = []
+    @State private var viewModel = ViewModel()
     
     var body: some View {
         ScrollView {
             VStack(spacing: 50) {
-                ForEach(movies) { movie in
+                ForEach(viewModel.movies) { movie in
                     AsyncImage(url: URL(string: movie.thumbnail)) { phase in
                         if let image = phase.image {
                             image
@@ -40,23 +29,8 @@ struct ContentView: View {
             }
             .padding()
             .task {
-                await fetchData()
+                await viewModel.fetchMovies()
             }
-        }
-    }
-    
-    func fetchData() async {
-        guard let url = URL(string: "https://raw.githubusercontent.com/TradeRev/tr-ios-challenge/master/list.json") else {
-            print("Invalid URL")
-            return
-        }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
-            movies = decodedResponse.movies
-        } catch {
-            print("Could not load data from server or decode the data")
         }
     }
 }
