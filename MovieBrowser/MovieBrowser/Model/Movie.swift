@@ -17,4 +17,7 @@ struct Movie: Identifiable, Decodable, Hashable {
     var Rating: Double?
     var picture: String?
     var releaseDate: Int?
+    
+    //Recommendations, list of movie IDs
+    var recommendedMovies: [Int]?
 }

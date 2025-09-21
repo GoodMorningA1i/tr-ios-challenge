@@ -16,6 +16,7 @@ extension ContentView {
         func fetchMovies() async {
             await fetchList()
             await fetchDetails()
+            await fetchRecommendations()
         }
         
         func fetchList() async {
@@ -54,5 +55,25 @@ extension ContentView {
             }
         }
         
+        func fetchRecommendations() async {
+            for id in movies.keys {
+                guard let url = URL(string: "https://raw.githubusercontent.com/TradeRev/tr-ios-challenge/master/details/recommended/\(id).json") else {
+                    print("Invalid URL")
+                    return
+                }
+                
+                do {
+                    let (data, _) = try await URLSession.shared.data(from: url)
+                    let decodedResponse = try JSONDecoder().decode(MovieResponse.self, from: data)
+                    
+                    movies[id]?.recommendedMovies = []
+                    for recommendedMovie in decodedResponse.movies {
+                        movies[id]?.recommendedMovies?.append(recommendedMovie.id)
+                    }
+                } catch {
+                    print("Could not load data from server or decode the data")
+                }
+            }
+        }
     }
 }
