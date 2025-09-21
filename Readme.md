@@ -1,7 +1,12 @@
-# The challenge
+# Movie Browsing App
 ## Goal
 Build a simple movie browser app using **Swift 5+** and **SwiftUI**.  
-Load a list of movies, navigate to a details screen, show recommended movies, and support “likes”.
+
+- **Movie List:** fetch and display the list.
+- **Details Screen:** navigate and show details for a movie, and show its recommendations.
+- **Navigation:** tapping a recommended movie opens its details.
+- **Likes:** allow marking a movie as liked/favorited and reflect this state across list and details (persist locally; your choice of method).
+
 Functionality and code quality matter more than pixel perfection.
 
 ## Requirements
@@ -27,12 +32,6 @@ Functionality and code quality matter more than pixel perfection.
 
 - **Recommended:**  
   `https://raw.githubusercontent.com/TradeRev/tr-ios-challenge/master/details/recommended/{id}.json`  
-
-## What to Build
-- **Movie List:** fetch and display the list.
-- **Details Screen:** show details for a movie and its recommendations.
-- **Navigation:** tapping a recommended movie opens its details.
-- **Likes:** allow marking a movie as liked/favorited and reflect this state across list and details (persist locally; your choice of method).
 
 ## Bonus
 - Unit tests.
