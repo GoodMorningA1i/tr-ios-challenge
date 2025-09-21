@@ -11,8 +11,8 @@ extension ContentView {
     @Observable @MainActor
     class ViewModel {
         
-        private(set) var movies: [Movie] = []
-        private(set) var details: [Details] = []
+        private(set) var movies: [Int: Movie] = [:]
+//        private(set) var details: [Details] = []
         
         func fetchMovies() async {
             guard let url = URL(string: "https://raw.githubusercontent.com/TradeRev/tr-ios-challenge/master/list.json") else {
@@ -23,7 +23,11 @@ extension ContentView {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 let decodedResponse = try JSONDecoder().decode(MovieResponse.self, from: data)
-                movies = decodedResponse.movies
+                                
+                for movie in decodedResponse.movies {
+                    //Assuming you can't have duplicate ids
+                    movies[movie.id] = movie
+                }
             } catch {
                 print("Could not load data from server or decode the data")
             }
@@ -37,8 +41,10 @@ extension ContentView {
             
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
-                let decodedResponse = try JSONDecoder().decode(Details.self, from: data)
-                details.append(decodedResponse)
+                let decodedResponse = try JSONDecoder().decode(Movie.self, from: data)
+//                details.append(decodedResponse)
+                
+                movies[id]?.Description = decodedResponse.Description
             } catch {
                 print("Could not load data from server or decode the data")
             }
