@@ -17,9 +17,6 @@ struct ContentView: View {
                     Text(movie.Description ?? "No description")
                         .padding()
                 }
-                .task {
-                    await viewModel.fetchDetails(id: movie.id)
-                }
             }
         }
         .task {

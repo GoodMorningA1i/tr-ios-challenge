@@ -14,6 +14,11 @@ extension ContentView {
         private(set) var movies: [Int: Movie] = [:]
         
         func fetchMovies() async {
+            await fetchList()
+            await fetchDetails()
+        }
+        
+        func fetchList() async {
             guard let url = URL(string: "https://raw.githubusercontent.com/TradeRev/tr-ios-challenge/master/list.json") else {
                 print("Invalid URL")
                 return
@@ -32,19 +37,22 @@ extension ContentView {
             }
         }
         
-        func fetchDetails(id: Int) async {
-            guard let url = URL(string: "https://raw.githubusercontent.com/TradeRev/tr-ios-challenge/master/details/\(id).json") else {
-                print("Invalid URL")
-                return
-            }
-            
-            do {
-                let (data, _) = try await URLSession.shared.data(from: url)
-                let decodedResponse = try JSONDecoder().decode(Movie.self, from: data)
-                movies[id]?.Description = decodedResponse.Description
-            } catch {
-                print("Could not load data from server or decode the data")
+        func fetchDetails() async {
+            for id in movies.keys {
+                guard let url = URL(string: "https://raw.githubusercontent.com/TradeRev/tr-ios-challenge/master/details/\(id).json") else {
+                    print("Invalid URL")
+                    return
+                }
+                
+                do {
+                    let (data, _) = try await URLSession.shared.data(from: url)
+                    let decodedResponse = try JSONDecoder().decode(Movie.self, from: data)
+                    movies[id]?.Description = decodedResponse.Description
+                } catch {
+                    print("Could not load data from server or decode the data")
+                }
             }
         }
+        
     }
 }
