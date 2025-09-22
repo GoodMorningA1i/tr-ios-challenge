@@ -9,6 +9,16 @@ Build a simple movie browser app using **Swift 5+** and **SwiftUI**.
 
 Functionality and code quality matter more than pixel perfection.
 
+## Demos
+
+Current state of app
+
+https://github.com/user-attachments/assets/a66686c6-1b0c-4b1f-8d2e-58188765f7bb
+
+At commit 2dc1a96bc3f01ed755a474c0adf5d575af981634
+
+https://youtube.com/shorts/SZX6kzA4MXM?feature=share
+
 ## Requirements
 - [X] **Language & UI:** Swift 5+, SwiftUI.
 - [X] **Concurrency:** Use Swift Concurrency (`async/await`).
