@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MovieDetailView: View {
+    @Environment(Favourites.self) var favourites
+    
     private var movie: Movie
 
     init(movie: Movie) {
@@ -23,9 +25,18 @@ struct MovieDetailView: View {
                 Text(recommendedMovie.name)
             }
         }
+        
+        Button(favourites.contains(movie) ?"Remove from Favourites" : "Add to Favourites") {
+            if favourites.contains(movie) {
+                favourites.remove(movie)
+            } else {
+                favourites.add(movie)
+            }
+        }
     }
 }
 
 #Preview {
     MovieDetailView(movie: Movie(id: 1, name: "John Wick", thumbnail: nil, year: nil))
+        .environment(Favourites())
 }
