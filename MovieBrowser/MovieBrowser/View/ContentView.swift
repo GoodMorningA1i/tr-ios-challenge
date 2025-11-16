@@ -14,8 +14,7 @@ struct ContentView: View {
         NavigationStack {
             List(Array(viewModel.movies.values)) { movie in
                 NavigationLink(movie.name) {
-                    Text(movie.Description ?? "No description")
-                        .padding()
+                    MovieDetailView(movie: movie)
                 }
             }
         }
