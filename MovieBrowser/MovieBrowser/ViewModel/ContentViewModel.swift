@@ -34,7 +34,7 @@ extension ContentView {
                     movies[movie.id] = movie
                 }
             } catch {
-                print("Could not load data from server or decode the data")
+                print("Could not load movie list data from server or decode the data")
             }
         }
         
@@ -50,7 +50,7 @@ extension ContentView {
                     let decodedResponse = try JSONDecoder().decode(Movie.self, from: data)
                     movies[id]?.Description = decodedResponse.Description
                 } catch {
-                    print("Could not load data from server or decode the data")
+                    print("Could not load details data from server or decode the data")
                 }
             }
         }
@@ -68,10 +68,10 @@ extension ContentView {
                     
                     movies[id]?.recommendedMovies = []
                     for recommendedMovie in decodedResponse.movies {
-                        movies[id]?.recommendedMovies?.append(recommendedMovie.id)
+                        movies[id]?.recommendedMovies?.append(recommendedMovie)
                     }
                 } catch {
-                    print("Could not load data from server or decode the data")
+                    print("Could not load recommendations data from server or decode the data")
                 }
             }
         }

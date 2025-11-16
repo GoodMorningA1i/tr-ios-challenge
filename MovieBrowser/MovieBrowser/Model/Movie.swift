@@ -19,5 +19,5 @@ struct Movie: Identifiable, Decodable, Hashable {
     var releaseDate: Int?
     
     //Recommendations, list of movie IDs
-    var recommendedMovies: [Int]?
+    var recommendedMovies: [Movie]?
 }

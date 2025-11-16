@@ -17,6 +17,12 @@ struct MovieDetailView: View {
     var body: some View {
         Text(movie.Description ?? "No description")
             .padding()
+        
+        List {
+            ForEach(movie.recommendedMovies ?? [], id: \.self) { recommendedMovie in
+                Text(recommendedMovie.name)
+            }
+        }
     }
 }
 
