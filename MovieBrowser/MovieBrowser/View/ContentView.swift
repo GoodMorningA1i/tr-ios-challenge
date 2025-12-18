@@ -13,11 +13,9 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            ScrollView {
                 ForEach(Array(viewModel.movies.values), id: \.self) { movie in
-                    NavigationLink {
-                        MovieDetailView(movie: movie)
-                    } label: {
+                    NavigationLink(value: movie) {
                         HStack {
                             AsyncImage(url: URL(string: movie.thumbnail ?? "")) { phase in
                                 if let image = phase.image {
@@ -37,6 +35,10 @@ struct ContentView: View {
                         }
                     }
                 }
+            }
+            .padding()
+            .navigationDestination(for: Movie.self) { movie in
+                MovieDetailView(movie: movie)
             }
         }
         .task {
