@@ -28,9 +28,15 @@ struct ContentView: View {
                                     ProgressView()
                                 }
                             }
-                            Spacer()
-                            if favourites.contains(movie) {
-                                Image(systemName: "heart.fill")
+                            .overlay(alignment: .topTrailing) {
+                                let isFavourite = favourites.contains(movie)
+                                
+                                Image(systemName: "heart")
+                                    .symbolVariant(isFavourite ? .fill : .none)
+                                    .padding()
+                                    .foregroundStyle(.background)
+                                    .font(.title)
+//                                    .shadow(color: .primary.opacity(0.75), radius: 200, x: 0, y: 0)
                             }
                         }
                     }
