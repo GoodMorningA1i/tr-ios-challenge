@@ -19,7 +19,17 @@ struct ContentView: View {
                         MovieDetailView(movie: movie)
                     } label: {
                         HStack {
-                            Text(movie.name)
+                            AsyncImage(url: URL(string: movie.thumbnail ?? "")) { phase in
+                                if let image = phase.image {
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                } else if phase.error != nil {
+                                    Text("An error occured loading the image")
+                                } else {
+                                    ProgressView()
+                                }
+                            }
                             Spacer()
                             if favourites.contains(movie) {
                                 Image(systemName: "heart.fill")
